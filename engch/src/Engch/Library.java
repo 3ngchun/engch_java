@@ -9,18 +9,18 @@ import java.nio.ByteBuffer;
 import java.security.SecureRandom;
 
 public class Library {
-    public int NanoTimeSeedSecureRandom(int range) {  // get range range to random
+    public double NanoTimeSeedSecureRandom(double range) {  // get range for random
         // seed for SecureRandom();
         // https://stackoverflow.com/questions/29273498/getting-date-time-in-unix-time-as-byte-array-which-size-is-4-bytes-with-java
         // https://www.baeldung.com/java-secure-random
         byte[] nano_time_byte_seed = ByteBuffer.allocate(4).putInt((int) (System.nanoTime())).array();  // [int, int, int, int]
         // seeded secure random.
         SecureRandom rand = new SecureRandom(nano_time_byte_seed);
-        return rand.nextInt(range);  // return (int) range(0 - range)
+        return rand.nextDouble(range);  // return (double) range(0 - range)
     }
 
     public ImageIcon ImageIconScales(String imagePath, int width, int length) throws IOException {
-        // just some rescaling of imageIcon
+        // rescaling of imageIcon
         // https://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
         if (ImageIO.read(new File(imagePath)) == null) throw new IOException();  // check if image file path exist
         else {
@@ -36,4 +36,3 @@ public class Library {
         String banner = "Welcome to Engch Library!";
     }
 }
-
